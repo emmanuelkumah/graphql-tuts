@@ -1,19 +1,16 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import { typeDefs } from "./schema";
-import db from "./db";
+import { typeDefs } from "./schema.js";
+import db from "./db.js";
 
 const resolvers = {
   Query: {
     students() {
-      return db.students;
+      return db.students; // returns the data to be sent to client
     },
     courses() {
       return db.courses;
-    },
-    instructors() {
-      return db.instructors;
     },
   },
 };
@@ -23,9 +20,8 @@ const server = new ApolloServer({
   resolvers,
 });
 
-const { url } = await startStandaloneServer({
-  server,
+const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
 });
 
-console.log(`Server ready on port ${url}`);
+console.log(`🚀  Server ready at: ${url}`);

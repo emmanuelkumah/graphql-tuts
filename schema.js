@@ -1,29 +1,22 @@
 export const typeDefs = `#graphql
-# Course type 
+# define the entities 
 type Course {
-    id:ID!
-    name:String!
-    cost:String!
-    instructor: Instructor!
-    rating: Int!
+    id:ID
+    name:String
+    cost:String
+    rating: Float
 }
-#Define studuent type and the fields to query
 type Student {
-    id: ID!
-    name: String!
-    level: String!
-    hasDiscount: Boolean
-    courses:[Course!]!
-}
-type Instructor {
-    id: ID!
-    name: String!
-    courses: [Course!]!
+    id: ID
+    name: String
+    level: String
+    courses:[String]
 }
 
+# define what you can fetch from the data source
 type Query {
     # specify fields to query and what the expected results should be
-    courses: [Course!]!
-    students:[Student!]!
+    courses: [Course]
+    students:[Student]
 }
 `;
