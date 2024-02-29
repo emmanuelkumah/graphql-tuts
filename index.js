@@ -6,11 +6,16 @@ import db from "./db.js";
 
 const resolvers = {
   Query: {
+    //define the resolver functions
     students() {
       return db.students; // returns the data to be sent to client
     },
     courses() {
       return db.courses;
+    },
+    //returns data for a specific student
+    student(_, args) {
+      return db.students.find((student) => student.id === args.id);
     },
   },
 };

@@ -13,10 +13,16 @@ type Student {
     courses:[String]
 }
 
-# define what you can fetch from the data source
+# Use the Root Query to define what you can fetch from the data source
 type Query {
     # specify fields to query and what the expected results should be
     courses: [Course]
     students:[Student]
+    #query for a single student
+    student(id:ID!): Student
+}
+#Mutating data 
+type Mutation{
+    deleteStudent(id: ID!): [Student]
 }
 `;
