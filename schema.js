@@ -18,8 +18,8 @@ type Query {
     # specify fields to query and what the expected results should be
     courses: [Course]
     students:[Student]
-    #query for a single student
-    student(id:ID!): Student
+#Fetch a specific student by providing a student's ID as argument
+student(id:ID!): Student
 }
 #Mutating data 
 type Mutation{
