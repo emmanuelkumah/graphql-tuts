@@ -15,8 +15,9 @@ type Student {
 
 # Use the Root Query to define what you can fetch from the data source
 type Query {
-    # specify fields to query and what the expected results should be
+    #get courses array
     courses: [Course]
+    #get students array
     students:[Student]
 #Fetch a specific student by providing a student's ID as argument
 student(id:ID!): Student
@@ -24,5 +25,12 @@ student(id:ID!): Student
 #Mutating data 
 type Mutation{
     deleteStudent(id: ID!): [Student]
+    addStudent(student: StudentInput!): Student
+}
+# data to pass to addStudent
+input StudentInput{
+    name: String
+    level: String
+    courses:[String]
 }
 `;

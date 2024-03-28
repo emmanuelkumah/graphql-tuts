@@ -5,6 +5,7 @@ import { typeDefs } from "./schema.js";
 import db from "./db.js";
 
 const resolvers = {
+  //The Query object holds the resolver methods for all the queries
   Query: {
     //define the resolver functions
     students() {
@@ -16,6 +17,21 @@ const resolvers = {
     //returns data for a specific student
     student(_, args) {
       return db.students.find((student) => student.id === args.id);
+    },
+  },
+  //The Mutation object holds the resolver methods for all mutations
+  Mutation: {
+    deleteStudent(_, args) {
+      db.students = db.students.filter((student) => student.id !== args.id);
+      return db.students;
+    },
+    addStudent(_, args) {
+      let student = {
+        ...args.student,
+        id: Math.floor(Math.random() * 1000).toString(),
+      };
+      db.students.push(student);
+      return student;
     },
   },
 };
